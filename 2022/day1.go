@@ -22,10 +22,7 @@ func main() {
 	scanner := bufio.NewScanner(file)
 
 	for scanner.Scan() {
-		kcal := scanner.Text()
-
-		kcal = strings.TrimSpace(kcal)
-
+		kcal := strings.TrimSpace(scanner.Text())
 		if kcal != "" {
 			i, err := strconv.Atoi(kcal)
 			if err != nil {
@@ -42,9 +39,6 @@ func main() {
 		return sums[i] > sums[j]
 	})
 
-	ans1 := sums[0]
-	ans2 := sums[0] + sums[1] + sums[2]
-
-	fmt.Println("Day 1 | Question 1:", ans1)
-	fmt.Println("Day 1 | Question 2:", ans2)
+	fmt.Println("Day 1 | Question 1:", sums[0])
+	fmt.Println("Day 1 | Question 2:", sums[0]+sums[1]+sums[2])
 }
