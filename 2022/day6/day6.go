@@ -30,7 +30,7 @@ func part2(input string) int {
 }
 
 func main() {
-	fmt.Println("---- 2022 Day 2 ----")
+	fmt.Println("---- 2022 Day 6 ----")
 	fmt.Println("part1: ", part1(fileInput))
 	fmt.Println("part2: ", part2(fileInput))
 }
