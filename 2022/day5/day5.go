@@ -4,20 +4,13 @@ import (
 	_ "embed"
 	"fmt"
 	"regexp"
-	"strconv"
 	"strings"
+
+	"github.com/kaugesaar/advent-of-code/utils"
 )
 
 //go:embed day5.txt
 var fileInput string
-
-func toInt(s string) int {
-	str, err := strconv.Atoi(s)
-	if err != nil {
-		panic(err)
-	}
-	return str
-}
 
 func parseCrates(input string) [][]string {
 	lines := strings.Split(input, "\n")
@@ -40,7 +33,7 @@ func parseMoves(input string) [][]int {
 	re := regexp.MustCompile("([0-9]{1,999})")
 	for _, line := range lines {
 		match := re.FindAllString(line, 3)
-		move := []int{toInt(match[0]), toInt(match[1]), toInt(match[2])}
+		move := []int{utils.ToInt(match[0]), utils.ToInt(match[1]), utils.ToInt(match[2])}
 		moves = append(moves, move)
 	}
 	return moves

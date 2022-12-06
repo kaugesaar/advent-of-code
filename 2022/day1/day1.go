@@ -4,27 +4,20 @@ import (
 	_ "embed"
 	"fmt"
 	"sort"
-	"strconv"
 	"strings"
+
+	"github.com/kaugesaar/advent-of-code/utils"
 )
 
 //go:embed day1.txt
 var fileInput string
-
-func toInt(str string) int {
-	i, err := strconv.Atoi(str)
-	if err != nil {
-		panic(err)
-	}
-	return i
-}
 
 func parser(parts []string) []int {
 	var sums []int
 	for _, part := range parts {
 		var sum int
 		for _, line := range strings.Split(part, "\n") {
-			sum += toInt(line)
+			sum += utils.ToInt(line)
 		}
 		sums = append(sums, sum)
 	}
