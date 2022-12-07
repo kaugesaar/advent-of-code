@@ -11,9 +11,7 @@ import (
 //go:embed day7.txt
 var fileInput string
 
-func parser(input string, s func([]int) int) int {
-	lines := strings.Split(input, "\n")
-
+func parser(lines []string, s func([]int) int) int {
 	var dir []int
 	var directories []int
 
@@ -65,8 +63,18 @@ func solution2(directories []int) int {
 	return min
 }
 
+func part1(input string) int {
+	lines := strings.Split(input, "\n")
+	return parser(lines, solution1)
+}
+
+func part2(input string) int {
+	lines := strings.Split(input, "\n")
+	return parser(lines, solution2)
+}
+
 func main() {
 	fmt.Println("---- 2022 Day 7 ----")
-	fmt.Println("part1: ", parser(fileInput, solution1))
-	fmt.Println("part2: ", parser(fileInput, solution2))
+	fmt.Println("part1: ", part1(fileInput))
+	fmt.Println("part2: ", part2(fileInput))
 }

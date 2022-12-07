@@ -9,7 +9,7 @@ import (
 var testInput string
 
 func TestPart1(t *testing.T) {
-	result := parser(testInput, solution1)
+	result := part1(testInput)
 	expected := 95437
 	if result != expected {
 		t.Errorf("Result is incorrect, got: %d, want: %d.", result, expected)
@@ -17,7 +17,7 @@ func TestPart1(t *testing.T) {
 }
 
 func TestPart2(t *testing.T) {
-	result := parser(testInput, solution2)
+	result := part2(testInput)
 	expected := 24933642
 	if result != expected {
 		t.Errorf("Result is incorrect, got: %d, want: %d.", result, expected)
@@ -25,7 +25,7 @@ func TestPart2(t *testing.T) {
 }
 
 func TestPart1Input(t *testing.T) {
-	result := parser(fileInput, solution1)
+	result := part1(fileInput)
 	expected := 1391690
 	if result != expected {
 		t.Errorf("Result is incorrect, got: %d, want: %d.", result, expected)
@@ -33,7 +33,7 @@ func TestPart1Input(t *testing.T) {
 }
 
 func TestPart2Input(t *testing.T) {
-	result := parser(fileInput, solution2)
+	result := part2(fileInput)
 	expected := 5469168
 	if result != expected {
 		t.Errorf("Result is incorrect, got: %d, want: %d.", result, expected)
@@ -42,11 +42,11 @@ func TestPart2Input(t *testing.T) {
 
 func BenchmarkPart1(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		parser(testInput, solution1)
+		part1(fileInput)
 	}
 }
 func BenchmarkPart2(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		parser(testInput, solution2)
+		part2(fileInput)
 	}
 }
