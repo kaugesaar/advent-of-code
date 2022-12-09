@@ -1,6 +1,6 @@
 # Advent of Code
 
-Learning Golang with advent of code.
+Learning Go with advent of code.
 
 # Results
 
