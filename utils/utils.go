@@ -1,6 +1,18 @@
 package utils
 
-import "strconv"
+import (
+	"io/ioutil"
+	"strconv"
+)
+
+// ReadFile reads the named file and returns the content.
+func ReadFile(path string) string {
+	input, error := ioutil.ReadFile(path)
+	if error != nil {
+		panic(error)
+	}
+	return string(input)
+}
 
 // ToInt transforms a string to an integer
 func ToInt(str string) int {
@@ -9,4 +21,10 @@ func ToInt(str string) int {
 		panic(err)
 	}
 	return i
+}
+
+// ToStr transforms a integer to a string
+func ToStr(i int) string {
+	str := strconv.Itoa(i)
+	return str
 }

@@ -1,4 +1,4 @@
-package main
+package day05
 
 import (
 	_ "embed"
@@ -7,6 +7,9 @@ import (
 
 //go:embed day5_test.txt
 var testInput string
+
+//go:embed day5.txt
+var fileInput string
 
 func TestPart1(t *testing.T) {
 	result := part1(testInput)

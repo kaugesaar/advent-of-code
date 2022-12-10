@@ -1,16 +1,19 @@
-package main
+package day08
 
 import (
 	_ "embed"
 	"testing"
 )
 
-//go:embed day2_test.txt
+//go:embed day8_test.txt
 var testInput string
+
+//go:embed day8.txt
+var fileInput string
 
 func TestPart1(t *testing.T) {
 	result := part1(testInput)
-	expected := 15
+	expected := 21
 	if result != expected {
 		t.Errorf("Result is incorrect, got: %d, want: %d.", result, expected)
 	}
@@ -18,7 +21,7 @@ func TestPart1(t *testing.T) {
 
 func TestPart2(t *testing.T) {
 	result := part2(testInput)
-	expected := 12
+	expected := 8
 	if result != expected {
 		t.Errorf("Result is incorrect, got: %d, want: %d.", result, expected)
 	}
@@ -26,7 +29,7 @@ func TestPart2(t *testing.T) {
 
 func TestPart1Input(t *testing.T) {
 	result := part1(fileInput)
-	expected := 10816
+	expected := 1736
 	if result != expected {
 		t.Errorf("Result is incorrect, got: %d, want: %d.", result, expected)
 	}
@@ -34,7 +37,7 @@ func TestPart1Input(t *testing.T) {
 
 func TestPart2Input(t *testing.T) {
 	result := part2(fileInput)
-	expected := 11657
+	expected := 268800
 	if result != expected {
 		t.Errorf("Result is incorrect, got: %d, want: %d.", result, expected)
 	}

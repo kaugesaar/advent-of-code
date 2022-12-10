@@ -1,42 +1,45 @@
-package main
+package day{DISPLAY_DAY}
 
 import (
 	_ "embed"
 	"testing"
 )
 
-//go:embed day6_test.txt
+//go:embed day{DAY}_test.txt
 var testInput string
+
+//go:embed day{DAY}.txt
+var fileInput string
 
 func TestPart1(t *testing.T) {
 	result := part1(testInput)
-	expected := 7
+	expected := ""
 	if result != expected {
-		t.Errorf("Result is incorrect, got: %d, want: %d.", result, expected)
+		t.Errorf("Result is incorrect, got: %s, want: %s.", result, expected)
 	}
 }
 
 func TestPart2(t *testing.T) {
 	result := part2(testInput)
-	expected := 19
+	expected := ""
 	if result != expected {
-		t.Errorf("Result is incorrect, got: %d, want: %d.", result, expected)
+		t.Errorf("Result is incorrect, got: %s, want: %s.", result, expected)
 	}
 }
 
 func TestPart1Input(t *testing.T) {
 	result := part1(fileInput)
-	expected := 1647
+	expected := ""
 	if result != expected {
-		t.Errorf("Result is incorrect, got: %d, want: %d.", result, expected)
+		t.Errorf("Result is incorrect, got: %s, want: %s.", result, expected)
 	}
 }
 
 func TestPart2Input(t *testing.T) {
 	result := part2(fileInput)
-	expected := 2447
+	expected := ""
 	if result != expected {
-		t.Errorf("Result is incorrect, got: %d, want: %d.", result, expected)
+		t.Errorf("Result is incorrect, got: %s, want: %s.", result, expected)
 	}
 }
 

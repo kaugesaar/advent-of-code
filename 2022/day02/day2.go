@@ -1,13 +1,14 @@
-package main
+package day02
 
 import (
-	_ "embed"
-	"fmt"
 	"strings"
+
+	"github.com/kaugesaar/advent-of-code/common"
+	"github.com/kaugesaar/advent-of-code/utils"
 )
 
-//go:embed day2.txt
-var fileInput string
+// Solution solutions for day 1
+type Solution struct{}
 
 var scores = map[string]map[string]int{
 	"part1": {
@@ -42,8 +43,20 @@ func part2(input string) int {
 	return parser(lines, "part2")
 }
 
-func main() {
-	fmt.Println("---- 2022 Day 2 ----")
-	fmt.Println("part1: ", part1(fileInput))
-	fmt.Println("part2: ", part2(fileInput))
+// Run1 runs the part 1 solution for day 2
+func (s Solution) Run1() common.Response {
+	return common.Response{
+		Output: utils.ToStr(part1(utils.ReadFile("./2022/day02/day2.txt"))),
+		Day:    "Day 2",
+		Part:   "Part 1",
+	}
+}
+
+// Run2 runs the part 2 solution for day 2
+func (s Solution) Run2() common.Response {
+	return common.Response{
+		Output: utils.ToStr(part2(utils.ReadFile("./2022/day02/day2.txt"))),
+		Day:    "Day 2",
+		Part:   "Part 2",
+	}
 }

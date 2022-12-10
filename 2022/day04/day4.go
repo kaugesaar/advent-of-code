@@ -1,13 +1,15 @@
-package main
+package day04
 
 import (
-	_ "embed"
 	"fmt"
 	"strings"
+
+	"github.com/kaugesaar/advent-of-code/common"
+	"github.com/kaugesaar/advent-of-code/utils"
 )
 
-//go:embed day4.txt
-var fileInput string
+// Solution solutions for day 4
+type Solution struct{}
 
 func fullyContains(a int, b int, c int, d int) bool {
 	return (a <= c && b >= d) || (c <= a && d >= b)
@@ -41,8 +43,20 @@ func part2(input string) int {
 	return result
 }
 
-func main() {
-	fmt.Println("---- 2022 Day 4 ----")
-	fmt.Println("part1: ", part1(fileInput))
-	fmt.Println("part2: ", part2(fileInput))
+// Run1 runs the part 1 solution for day 4
+func (s Solution) Run1() common.Response {
+	return common.Response{
+		Output: utils.ToStr(part1(utils.ReadFile("./2022/day04/day4.txt"))),
+		Day:    "Day 4",
+		Part:   "Part 1",
+	}
+}
+
+// Run2 runs the part 2 solution for day 4
+func (s Solution) Run2() common.Response {
+	return common.Response{
+		Output: utils.ToStr(part2(utils.ReadFile("./2022/day04/day4.txt"))),
+		Day:    "Day 4",
+		Part:   "Part 2",
+	}
 }
