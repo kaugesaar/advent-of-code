@@ -6,7 +6,7 @@ Learning Go with advent of code.
 
 Running on a MacBook Pro (13-inch, M1, 16GB, 2020) 
 
-| Day | Part 1  | Part 2  |
+| Day | ⭐️      | ⭐️⭐️     |
 |-----|---------|---------|
 | 1   | 0.100ms | 0.099ms |
 | 2   | 0.094ms | 0.104ms |
