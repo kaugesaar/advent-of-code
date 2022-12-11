@@ -49,5 +49,5 @@ go run ./benchmark/benchmark.go
 Set your AOC_SESSION_COOKIE environment variable for your machine. Then you can scaffold each day with. 
 
 ```
-./scaffold {day}
+./scaffold.sh {day}
 ```
