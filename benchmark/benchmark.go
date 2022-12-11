@@ -12,6 +12,8 @@ import (
 	"github.com/kaugesaar/advent-of-code/2022/day06"
 	"github.com/kaugesaar/advent-of-code/2022/day07"
 	"github.com/kaugesaar/advent-of-code/2022/day08"
+	"github.com/kaugesaar/advent-of-code/2022/day09"
+	"github.com/kaugesaar/advent-of-code/2022/day10"
 )
 
 var benches = []func(b *testing.B){
@@ -31,6 +33,10 @@ var benches = []func(b *testing.B){
 	benchmarkDay7Part2,
 	benchmarkDay8Part1,
 	benchmarkDay8Part2,
+	benchmarkDay9Part1,
+	benchmarkDay9Part2,
+	benchmarkDay10Part1,
+	benchmarkDay10Part2,
 }
 
 func main() {
@@ -150,5 +156,29 @@ func benchmarkDay8Part1(b *testing.B) {
 func benchmarkDay8Part2(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		day08.Solution{}.Run2()
+	}
+}
+
+func benchmarkDay9Part1(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		day09.Solution{}.Run1()
+	}
+}
+
+func benchmarkDay9Part2(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		day09.Solution{}.Run2()
+	}
+}
+
+func benchmarkDay10Part1(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		day10.Solution{}.Run1()
+	}
+}
+
+func benchmarkDay10Part2(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		day10.Solution{}.Run2()
 	}
 }
