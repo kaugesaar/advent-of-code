@@ -19,10 +19,10 @@ cp day.txt day${DAY}.txt
 cp day_test.txt day${DAY}_test.txt
 
 # Replace the variables
-sed -i "s/{DAY}/${DAY}/g" day${DAY}.txt
-sed -i "s/{DISPLAY_DAY}/${DISPLAY_DAY}/g" day${DAY}.txt
-sed -i "s/{DAY}/${DAY}/g" day${DAY}_test.txt
-sed -i "s/{DISPLAY_DAY}/${DISPLAY_DAY}/g" day${DAY}_test.txt
+sed -i "" "s/{DAY}/${DAY}/g" day${DAY}.txt
+sed -i "" "s/{DISPLAY_DAY}/${DISPLAY_DAY}/g" day${DAY}.txt
+sed -i "" "s/{DAY}/${DAY}/g" day${DAY}_test.txt
+sed -i "" "s/{DISPLAY_DAY}/${DISPLAY_DAY}/g" day${DAY}_test.txt
 
 # Move them to to target folder and change to .go
 cd ..
