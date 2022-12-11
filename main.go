@@ -15,6 +15,7 @@ import (
 	"github.com/kaugesaar/advent-of-code/2022/day08"
 	"github.com/kaugesaar/advent-of-code/2022/day09"
 	"github.com/kaugesaar/advent-of-code/2022/day10"
+	"github.com/kaugesaar/advent-of-code/2022/day11"
 	"github.com/kaugesaar/advent-of-code/common"
 	"github.com/kaugesaar/advent-of-code/utils"
 )
@@ -36,6 +37,7 @@ var solutions = []Solution{
 	day08.Solution{},
 	day09.Solution{},
 	day10.Solution{},
+	day11.Solution{},
 }
 
 func run(run func() common.Response) {
