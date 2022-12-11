@@ -2,7 +2,8 @@
 
 Learning Go with advent of code.
 
-# Results
+
+### Results
 
 Running on a MacBook Pro (13-inch, M1, 16GB, 2020) 
 
@@ -18,3 +19,35 @@ Running on a MacBook Pro (13-inch, M1, 16GB, 2020)
 | 8   | 0.396ms | 4.753ms |
 | 9   | 0.858ms | 2.184ms |
 | 10  | 0.017ms | 0.023ms |
+
+
+## Run
+From the root directory you can.
+
+Run all
+```
+go run main.go
+```
+
+Run specific day
+```
+go run main.go {day}
+```
+
+Run specific day and part
+```
+go run main.go {day} {part}
+```
+
+## Benchmark
+Run benchmarks that outputs copy paste friendly markdown formated table
+```
+go run ./benchmark/benchmark.go
+```
+
+## Scaffold
+Set your AOC_SESSION_COOKIE environment variable for your machine. Then you can scaffold each day with. 
+
+```
+./scaffold {day}
+```
