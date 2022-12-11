@@ -38,7 +38,13 @@ func run(run func() common.Response) {
 	start := time.Now()
 	response := run()
 	elapsed := time.Since(start)
-	fmt.Printf("%v: %v (%s)\n", response.Part, response.Output, elapsed)
+	ms := float64(elapsed.Nanoseconds()) / 1000000.0
+	if response.Part == "Part 1" {
+		fmt.Printf("⭐   : %v (%0.3fms)\n", response.Output, ms)
+	} else {
+		fmt.Printf("⭐⭐ : %v (%0.3fms)\n", response.Output, ms)
+	}
+
 }
 
 func runSolution(day string, part string) {
@@ -64,7 +70,6 @@ func runAllSolutions() {
 }
 
 func main() {
-
 	numArgs := len(os.Args)
 
 	if numArgs == 1 {
