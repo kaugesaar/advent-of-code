@@ -13,7 +13,7 @@ fi
 
 TARGET=2022/day${DISPLAY_DAY}
 
-# Make a copy of the boilerplate file
+# Make a copy of the boilerplate files
 cd boilerplate
 cp day.txt day${DAY}.txt
 cp day_test.txt day${DAY}_test.txt
@@ -30,7 +30,7 @@ mkdir -p ${TARGET}
 mv boilerplate/day${DAY}.txt ${TARGET}/day${DAY}.go
 mv boilerplate/day${DAY}_test.txt ${TARGET}/day${DAY}_test.go
 
-# Download the sample input data from advent of code
+# Download the input data from advent of code
 INPUT_URL="https://adventofcode.com/2022/day/${DAY}/input"
 TEMP_INPUT="temp-input.txt"
 curl "${INPUT_URL}" -H "cookie: session=$AOC_SESSION_COOKIE" -o "${TEMP_INPUT}" 2>/dev/null
