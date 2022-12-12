@@ -1,4 +1,4 @@
-package main
+package benchmark
 
 import (
 	"fmt"
@@ -14,171 +14,73 @@ import (
 	"github.com/kaugesaar/advent-of-code/2022/day08"
 	"github.com/kaugesaar/advent-of-code/2022/day09"
 	"github.com/kaugesaar/advent-of-code/2022/day10"
+	"github.com/kaugesaar/advent-of-code/2022/day11"
+	"github.com/kaugesaar/advent-of-code/common"
 )
 
-var benches = []func(b *testing.B){
-	benchmarkDay1Part1,
-	benchmarkDay1Part2,
-	benchmarkDay2Part1,
-	benchmarkDay2Part2,
-	benchmarkDay3Part1,
-	benchmarkDay3Part2,
-	benchmarkDay4Part1,
-	benchmarkDay4Part2,
-	benchmarkDay5Part1,
-	benchmarkDay5Part2,
-	benchmarkDay6Part1,
-	benchmarkDay6Part2,
-	benchmarkDay7Part1,
-	benchmarkDay7Part2,
-	benchmarkDay8Part1,
-	benchmarkDay8Part2,
-	benchmarkDay9Part1,
-	benchmarkDay9Part2,
-	benchmarkDay10Part1,
-	benchmarkDay10Part2,
+// Solution can solve part1 and part2
+type Solution interface {
+	Run1() common.Response
+	Run2() common.Response
 }
 
-func main() {
+type benchmark struct {
+	f     Solution
+	queue []Solution
+}
+
+// Run all benchmarks
+func Run() {
+	var b = benchmark{}
+	b.queue = []Solution{
+		day01.Solution{},
+		day02.Solution{},
+		day03.Solution{},
+		day04.Solution{},
+		day05.Solution{},
+		day06.Solution{},
+		day07.Solution{},
+		day08.Solution{},
+		day09.Solution{},
+		day10.Solution{},
+		day11.Solution{},
+	}
+
 	fmt.Println("---- 🔨 Running benchmark 🔨 ----")
 	fmt.Println("| Day | Part 1  | Part 2  |")
 	fmt.Println("|-----|---------|---------|")
-	day := 1
-	for i, bench := range benches {
-		testing := testing.Benchmark(bench)
-		if i%2 != 0 {
-			fmt.Printf("| %0.3fms |\n", toMs(testing.NsPerOp()))
-			day++
+	day := 0
+
+	for range b.queue {
+		day++
+		b.setFunction()
+		part1 := testing.Benchmark(b.runBenchmark1)
+		part2 := testing.Benchmark(b.runBenchmark2)
+		if day < 10 {
+			fmt.Printf("| %d   | %0.3fms ", day, toMs(part1.NsPerOp()))
 		} else {
-			if day < 10 {
-				fmt.Printf("| %d   | %0.3fms ", day, toMs(testing.NsPerOp()))
-			} else {
-				fmt.Printf("| %d  | %0.3fms ", day, toMs(testing.NsPerOp()))
-			}
+			fmt.Printf("| %d  | %0.3fms ", day, toMs(part1.NsPerOp()))
 		}
+		fmt.Printf("| %0.3fms |\n", toMs(part2.NsPerOp()))
+	}
+}
+
+func (b *benchmark) setFunction() {
+	b.f, b.queue = b.queue[0], append(b.queue[:0], b.queue[1:]...)
+}
+
+func (b *benchmark) runBenchmark1(t *testing.B) {
+	for i := 0; i < t.N; i++ {
+		b.f.Run1()
+	}
+}
+
+func (b *benchmark) runBenchmark2(t *testing.B) {
+	for i := 0; i < t.N; i++ {
+		b.f.Run2()
 	}
 }
 
 func toMs(nsPerOp int64) float64 {
 	return float64(nsPerOp) / 1000000.0
-}
-
-func benchmarkDay1Part1(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		day01.Solution{}.Run1()
-	}
-}
-
-func benchmarkDay1Part2(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		day01.Solution{}.Run2()
-	}
-}
-
-func benchmarkDay2Part1(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		day02.Solution{}.Run1()
-	}
-}
-
-func benchmarkDay2Part2(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		day02.Solution{}.Run2()
-	}
-}
-
-func benchmarkDay3Part1(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		day03.Solution{}.Run1()
-	}
-}
-
-func benchmarkDay3Part2(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		day03.Solution{}.Run2()
-	}
-}
-
-func benchmarkDay4Part1(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		day04.Solution{}.Run1()
-	}
-}
-
-func benchmarkDay4Part2(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		day04.Solution{}.Run2()
-	}
-}
-
-func benchmarkDay5Part1(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		day05.Solution{}.Run1()
-	}
-}
-
-func benchmarkDay5Part2(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		day05.Solution{}.Run2()
-	}
-}
-
-func benchmarkDay6Part1(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		day06.Solution{}.Run1()
-	}
-}
-
-func benchmarkDay6Part2(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		day06.Solution{}.Run2()
-	}
-}
-
-func benchmarkDay7Part1(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		day07.Solution{}.Run1()
-	}
-}
-
-func benchmarkDay7Part2(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		day07.Solution{}.Run2()
-	}
-}
-
-func benchmarkDay8Part1(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		day08.Solution{}.Run1()
-	}
-}
-
-func benchmarkDay8Part2(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		day08.Solution{}.Run2()
-	}
-}
-
-func benchmarkDay9Part1(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		day09.Solution{}.Run1()
-	}
-}
-
-func benchmarkDay9Part2(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		day09.Solution{}.Run2()
-	}
-}
-
-func benchmarkDay10Part1(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		day10.Solution{}.Run1()
-	}
-}
-
-func benchmarkDay10Part2(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		day10.Solution{}.Run2()
-	}
 }
