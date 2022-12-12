@@ -38,29 +38,22 @@ func part1(input string) string {
 func part2(input string) string {
 	rows := strings.Split(input, "\n")
 	m := matrix.BuildIntMatrix(rows)
-	var starts []matrix.Pos
-	var end matrix.Pos
-	best := len(m) * len(m[0])
+	var start matrix.Pos
+	best := 0
 
 	for y, l := range m {
 		for x, c := range l {
-			if c == 'S' || c == 'a' {
-				starts = append(starts, matrix.Pos{X: x, Y: y})
+			if c == 'S' {
 				m[y][x] = 'a'
 			}
 			if c == 'E' {
-				end = matrix.Pos{X: x, Y: y}
+				start = matrix.Pos{X: x, Y: y}
 				m[y][x] = 'z'
 			}
 		}
 	}
 
-	for _, start := range starts {
-		curr := pathfinding.Bfs(m, start, end)
-		if curr != -1 {
-			best = utils.MinInt(best, curr)
-		}
-	}
+	best = pathfinding.BfsFindValue(m, start, 'a')
 
 	return utils.ToStr(best)
 }
