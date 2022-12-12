@@ -80,19 +80,19 @@ func runAllSolutions() {
 func main() {
 	numArgs := len(os.Args)
 
-	if numArgs == 1 {
+	switch numArgs {
+	case 1:
 		runAllSolutions()
-	}
-
-	if numArgs == 2 {
+	case 2:
 		if os.Args[1] == "-bench" {
 			benchmark.Run()
 		} else {
 			runSolution(os.Args[1], "")
 		}
-	}
-
-	if numArgs == 3 {
+	case 3:
 		runSolution(os.Args[1], os.Args[2])
+	default:
+		panic("Invalid number of arguments")
+
 	}
 }
