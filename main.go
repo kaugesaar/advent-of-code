@@ -17,6 +17,7 @@ import (
 	"github.com/kaugesaar/advent-of-code/2022/day10"
 	"github.com/kaugesaar/advent-of-code/2022/day11"
 	"github.com/kaugesaar/advent-of-code/2022/day12"
+	"github.com/kaugesaar/advent-of-code/benchmark"
 	"github.com/kaugesaar/advent-of-code/common"
 	"github.com/kaugesaar/advent-of-code/utils"
 )
@@ -84,7 +85,11 @@ func main() {
 	}
 
 	if numArgs == 2 {
-		runSolution(os.Args[1], "")
+		if os.Args[1] == "-bench" {
+			benchmark.Run()
+		} else {
+			runSolution(os.Args[1], "")
+		}
 	}
 
 	if numArgs == 3 {
