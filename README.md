@@ -7,18 +7,20 @@ Learning Go with advent of code.
 
 Running on a MacBook Pro (13-inch, M1, 16GB, 2020) 
 
-| Day | ⭐️      | ⭐️⭐️     |
-|-----|---------|---------|
-| 1   | 0.100ms | 0.099ms |
-| 2   | 0.094ms | 0.104ms |
-| 3   | 0.019ms | 0.015ms |
-| 4   | 0.713ms | 0.710ms |
-| 5   | 0.578ms | 0.570ms |
-| 6   | 0.057ms | 0.564ms |
-| 7   | 0.043ms | 0.043ms |
-| 8   | 0.396ms | 4.753ms |
-| 9   | 0.858ms | 2.184ms |
-| 10  | 0.017ms | 0.023ms |
+| Day | Part 1  | Part 2   |
+|-----|---------|----------|
+| 1   | 0.104ms | 0.110ms  |
+| 2   | 0.027ms | 0.024ms  |
+| 3   | 0.725ms | 0.722ms  |
+| 4   | 0.586ms | 0.596ms  |
+| 5   | 0.064ms | 0.572ms  |
+| 6   | 0.051ms | 0.051ms  |
+| 7   | 0.407ms | 4.757ms  |
+| 8   | 0.868ms | 2.194ms  |
+| 9   | 0.018ms | 0.023ms  |
+| 10  | 0.064ms | 13.908ms |
+| 11  | 0.134ms | 28.095ms |
+| 12  | 0.133ms | 29.549ms |
 
 
 ## Run
@@ -42,7 +44,7 @@ go run main.go {day} {part}
 ## Benchmark
 Run benchmarks that outputs copy paste friendly markdown formated table
 ```
-go run ./benchmark/benchmark.go
+go run main.go -bench
 ```
 
 ## Scaffold
