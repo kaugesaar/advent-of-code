@@ -16,6 +16,7 @@ import (
 	"github.com/kaugesaar/advent-of-code/2022/day09"
 	"github.com/kaugesaar/advent-of-code/2022/day10"
 	"github.com/kaugesaar/advent-of-code/2022/day11"
+	"github.com/kaugesaar/advent-of-code/2022/day12"
 	"github.com/kaugesaar/advent-of-code/common"
 	"github.com/kaugesaar/advent-of-code/utils"
 )
@@ -38,6 +39,7 @@ var solutions = []Solution{
 	day09.Solution{},
 	day10.Solution{},
 	day11.Solution{},
+	day12.Solution{},
 }
 
 func run(run func() common.Response) {
@@ -50,7 +52,6 @@ func run(run func() common.Response) {
 	} else {
 		fmt.Printf("⭐⭐ : %v (%0.3fms)\n", response.Output, ms)
 	}
-
 }
 
 func runSolution(day string, part string) {

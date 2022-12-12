@@ -28,3 +28,11 @@ func ToStr(i int) string {
 	str := strconv.Itoa(i)
 	return str
 }
+
+// MinInt returns the smaller of a and b
+func MinInt(a, b int) int {
+	if a > b {
+		return b
+	}
+	return a
+}
