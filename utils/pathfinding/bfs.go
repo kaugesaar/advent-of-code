@@ -49,7 +49,7 @@ func Bfs(m matrix.IntMatrix, start matrix.Pos, target matrix.Pos) int {
 	return -1
 }
 
-// BfsFindValue finds the shortages to value
+// BfsFindValue finds the shortage way to value with unkown position
 func BfsFindValue(m matrix.IntMatrix, start matrix.Pos, value int) int {
 	rows := len(m)
 	cols := len(m[0])
