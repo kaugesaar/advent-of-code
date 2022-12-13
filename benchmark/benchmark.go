@@ -53,9 +53,9 @@ func Run() {
 	fmt.Println("|-----|---------|---------|")
 	day := 0
 
-	for range b.queue {
+	for _, f := range b.queue {
 		day++
-		b.setFunction()
+		b.setFunction(f)
 		part1 := testing.Benchmark(b.runBenchmark1)
 		part2 := testing.Benchmark(b.runBenchmark2)
 		if day < 10 {
@@ -67,8 +67,8 @@ func Run() {
 	}
 }
 
-func (b *benchmark) setFunction() {
-	b.f, b.queue = b.queue[0], append(b.queue[:0], b.queue[1:]...)
+func (b *benchmark) setFunction(f Solution) {
+	b.f = f
 }
 
 func (b *benchmark) runBenchmark1(t *testing.B) {
