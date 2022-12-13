@@ -16,6 +16,7 @@ import (
 	"github.com/kaugesaar/advent-of-code/2022/day10"
 	"github.com/kaugesaar/advent-of-code/2022/day11"
 	"github.com/kaugesaar/advent-of-code/2022/day12"
+	"github.com/kaugesaar/advent-of-code/2022/day13"
 	"github.com/kaugesaar/advent-of-code/common"
 )
 
@@ -46,6 +47,7 @@ func Run() {
 		day10.Solution{},
 		day11.Solution{},
 		day12.Solution{},
+		day13.Solution{},
 	}
 
 	fmt.Println("---- 🔨 Running benchmark 🔨 ----")
