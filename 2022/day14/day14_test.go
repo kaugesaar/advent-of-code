@@ -37,7 +37,7 @@ func TestPart1Input(t *testing.T) {
 
 func TestPart2Input(t *testing.T) {
 	result := part2(fileInput)
-	expected := "22195"
+	expected := "22499"
 	if result != expected {
 		t.Errorf("Result is incorrect, got: %s, want: %s.", result, expected)
 	}

@@ -26,15 +26,7 @@ func part1(input string) string {
 	for sand.y <= maxY {
 		sand = point{x:500, y:0}
 		for !grid[sand] && sand.y <= maxY {
-			if !grid[point{sand.x, sand.y + 1}] {
-				sand.y += 1
-			} else if !grid[point{sand.x - 1, sand.y + 1}] {
-				sand.x -= 1
-				sand.y += 1
-			} else if !grid[point{sand.x + 1, sand.y + 1}] {
-				sand.x += 1
-				sand.y += 1
-			} else {
+			if simulateFall(grid, &sand) {
 				grid[sand] = true
 				count++
 			}
@@ -55,15 +47,7 @@ func part2(input string) string {
 	for !grid[point{500, 0}] {
 		sand = point{x:500, y:0}
 		for !grid[sand] && sand.y <= floor - 1 {
-			if !grid[point{sand.x, sand.y + 1}] {
-				sand.y += 1
-			} else if !grid[point{sand.x - 1, sand.y + 1}] {
-				sand.x -= 1
-				sand.y += 1
-			} else if !grid[point{sand.x + 1, sand.y + 1}] {
-				sand.x += 1
-				sand.y += 1
-			} else {
+			if simulateFall(grid, &sand) {
 				grid[sand] = true
 				count++
 			}
@@ -74,6 +58,21 @@ func part2(input string) string {
 		}
 	}
 	return utils.ToStr(count)
+}
+
+func simulateFall(grid map[point]bool, sand *point) bool {
+	if !grid[point{sand.x, sand.y + 1}] {
+		sand.y += 1
+	} else if !grid[point{sand.x - 1, sand.y + 1}] {
+		sand.x -= 1
+		sand.y += 1
+	} else if !grid[point{sand.x + 1, sand.y + 1}] {
+		sand.x += 1
+		sand.y += 1
+	} else {
+		return true
+	}
+	return false
 }
 
 func parse(input string) map[point]bool {
@@ -87,10 +86,15 @@ func parse(input string) map[point]bool {
 			currPoint := point{x:x, y:y}
 
 			if i > 0 {
-				for i := utils.MinInt(currPoint.x, prevPoint.x); i <= utils.MaxInt(currPoint.x, prevPoint.x); i++ {
+				minX := utils.MinInt(currPoint.x, prevPoint.x)
+				maxX := utils.MaxInt(currPoint.x, prevPoint.x)
+				minY := utils.MinInt(currPoint.y, prevPoint.y)
+				maxY := utils.MaxInt(currPoint.y, prevPoint.y)
+
+				for i := minX; i <= maxX; i++ {
 					grid[point{x:i, y:y}] = true
 				}
-				for j := utils.MinInt(currPoint.y, prevPoint.y); j <= utils.MaxInt(currPoint.y, prevPoint.y); j++ {
+				for j := minY; j <= maxY; j++ {
 					grid[point{x:x, y:j}] = true
 				}
 			} else {
