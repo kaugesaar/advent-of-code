@@ -2,6 +2,7 @@ package utils
 
 import (
 	"io/ioutil"
+	"math"
 	"strconv"
 )
 
@@ -37,7 +38,7 @@ func MinInt(a, b int) int {
 	return a
 }
 
-// MinInt returns the smaller of a and b
+// MaxInt returns the smaller of a and b
 func MaxInt(a, b int) int {
 	if a > b {
 		return a
@@ -45,3 +46,7 @@ func MaxInt(a, b int) int {
 	return b
 }
 
+// Abs returns the absolute value of x
+func Abs(x int) int {
+	return int(math.Abs(float64(x)))
+}
