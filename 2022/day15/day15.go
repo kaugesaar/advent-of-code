@@ -50,33 +50,49 @@ func part1(input string, row int) string {
 func part2(input string, coordMax int) string {
 	sensors := parser(input)
 	possibleBeacon := point{}
-	coveringSensor := sensor{}
 
-	for {
-		covered := false
-		for _, sensor := range sensors {
-			covered = sensor.contains(possibleBeacon)
-			if covered {
-				coveringSensor = sensor
+	for _, sensor := range sensors {
+
+		if possibleBeacon.x > 0 {
+			break
+		}
+
+		for y := sensor.pos.y - sensor.distance + 1; y <= sensor.pos.y+sensor.distance; y++ {
+
+			if y < 0 || y > 4000000 {
+				continue
+			}
+
+			leftX := sensor.pos.x - (sensor.distance - utils.Abs(sensor.pos.y-y) + 1)
+			rightX := sensor.pos.x + (sensor.distance - utils.Abs(sensor.pos.y-y) + 1)
+			leftPoint := point{leftX, y}
+			rightPoint := point{rightX, y}
+
+			if !isCoveredBySensor(leftPoint, sensors) && leftX < 4000000 {
+				possibleBeacon = leftPoint
+				break
+			}
+
+			if !isCoveredBySensor(rightPoint, sensors) && rightX < 4000000 {
+				possibleBeacon = rightPoint
 				break
 			}
 		}
 
-		if !covered {
+	}
+
+	return utils.ToStr(possibleBeacon.x*4000000 + possibleBeacon.y)
+}
+
+func isCoveredBySensor(possibleBeacon point, sensors []sensor) bool {
+	covered := false
+	for _, sensor := range sensors {
+		if sensor.contains(possibleBeacon) {
+			covered = true
 			break
 		}
-
-		skip := coveringSensor.distance - manhattan(coveringSensor.pos, possibleBeacon) + 1
-
-		if possibleBeacon.x+skip > coordMax {
-			possibleBeacon.x = 0
-			possibleBeacon.y++
-		} else {
-			possibleBeacon.x += skip
-		}
-
 	}
-	return utils.ToStr(possibleBeacon.x*4000000 + possibleBeacon.y)
+	return covered
 }
 
 func manhattan(a point, b point) int {
