@@ -18,7 +18,9 @@ import (
 	"github.com/kaugesaar/advent-of-code/2022/day12"
 	"github.com/kaugesaar/advent-of-code/2022/day13"
 	"github.com/kaugesaar/advent-of-code/2022/day14"
+	"github.com/kaugesaar/advent-of-code/2022/day15"
 	"github.com/kaugesaar/advent-of-code/common"
+	"github.com/kaugesaar/advent-of-code/utils"
 )
 
 // Solution can solve part1 and part2
@@ -33,7 +35,7 @@ type benchmark struct {
 }
 
 // Run all benchmarks
-func Run() {
+func Run(solution string) {
 	var b = benchmark{}
 	b.queue = []Solution{
 		day01.Solution{},
@@ -50,24 +52,31 @@ func Run() {
 		day12.Solution{},
 		day13.Solution{},
 		day14.Solution{},
+		day15.Solution{},
+	}
+
+	day := 1
+
+	if solution != "" {
+		day = utils.ToInt(solution)
+		b.queue = []Solution{b.queue[utils.ToInt(solution) - 1]}
 	}
 
 	fmt.Println("---- 🔨 Running benchmark 🔨 ----")
 	fmt.Println("| Day | Part 1  | Part 2  |")
 	fmt.Println("|-----|---------|---------|")
-	day := 0
 
 	for _, f := range b.queue {
-		day++
 		b.setFunction(f)
 		part1 := testing.Benchmark(b.runBenchmark1)
 		part2 := testing.Benchmark(b.runBenchmark2)
 		if day < 10 {
-			fmt.Printf("| %d   | %0.3fms ", day, toMs(part1.NsPerOp()))
+			fmt.Printf("| %d   | %.3fms ", day, toMs(part1.NsPerOp()))
 		} else {
-			fmt.Printf("| %d  | %0.3fms ", day, toMs(part1.NsPerOp()))
+			fmt.Printf("| %d  | %.3fms ", day, toMs(part1.NsPerOp()))
 		}
-		fmt.Printf("| %0.3fms |\n", toMs(part2.NsPerOp()))
+		fmt.Printf("| %.3fms |\n", toMs(part2.NsPerOp()))
+		day++
 	}
 }
 

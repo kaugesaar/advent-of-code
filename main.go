@@ -91,12 +91,16 @@ func main() {
 		runAllSolutions()
 	case 2:
 		if os.Args[1] == "-bench" {
-			benchmark.Run()
+			benchmark.Run("")
 		} else {
 			runSolution(os.Args[1], "")
 		}
 	case 3:
-		runSolution(os.Args[1], os.Args[2])
+		if os.Args[2] == "-bench" {
+			benchmark.Run(os.Args[1])
+		} else {
+			runSolution(os.Args[1], os.Args[2])
+		}
 	default:
 		panic("Invalid number of arguments")
 
