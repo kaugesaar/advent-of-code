@@ -50,31 +50,30 @@ func part1(input string, row int) string {
 func part2(input string, coordMax int) string {
 	sensors := parser(input)
 	possibleBeacon := point{}
+	foundBeacon := false
 
 	for _, sensor := range sensors {
 
-		if possibleBeacon.x > 0 {
+		if foundBeacon {
 			break
 		}
 
-		for y := sensor.pos.y - sensor.distance + 1; y <= sensor.pos.y+sensor.distance; y++ {
+		for y := sensor.pos.y - sensor.distance; y <= sensor.pos.y+sensor.distance; y++ {
 
-			if y < 0 || y > 4000000 {
+			if y < 0 || y > coordMax {
 				continue
 			}
 
-			leftX := sensor.pos.x - (sensor.distance - utils.Abs(sensor.pos.y-y) + 1)
-			rightX := sensor.pos.x + (sensor.distance - utils.Abs(sensor.pos.y-y) + 1)
-			leftPoint := point{leftX, y}
-			rightPoint := point{rightX, y}
+			x := sensor.pos.x + (sensor.distance - utils.Abs(sensor.pos.y-y) + 1)
 
-			if !isCoveredBySensor(leftPoint, sensors) && leftX < 4000000 {
-				possibleBeacon = leftPoint
-				break
+			if x < 0 || x > coordMax {
+				continue
 			}
 
-			if !isCoveredBySensor(rightPoint, sensors) && rightX < 4000000 {
-				possibleBeacon = rightPoint
+			possibleBeacon = point{x, y}
+
+			if !isCoveredBySensor(possibleBeacon, sensors) {
+				foundBeacon = true
 				break
 			}
 		}
