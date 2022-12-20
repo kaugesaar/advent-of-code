@@ -50,3 +50,13 @@ func MaxInt(a, b int) int {
 func Abs(x int) int {
 	return int(math.Abs(float64(x)))
 }
+
+// Contains checks if slice contains string
+func Contains(s []string, str string) bool {
+	for _, v := range s {
+		if v == str {
+			return true
+		}
+	}
+	return false
+}
