@@ -24,6 +24,7 @@ Running on a MacBook Pro (13-inch, M1, 16GB, 2020)
 | 13  | 1.015ms | 1.717ms |
 | 14  | 1.811ms | 72.58ms |
 | 15  | 317.6ms | 215.8ms |
+| 16  | 163.6ms | 191.1ms |
 
 
 ## Run
